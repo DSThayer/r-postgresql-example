@@ -45,6 +45,7 @@ surgery <- dbGetQuery(con, "select distinct a.practiceid
 
 surgery
 
+
 surgery <- sort(surgery$practiceid)
 
 total_rows <- dbGetQuery(con, "select count(*) from public.gp_data_up_to_2015")
@@ -76,5 +77,14 @@ dbDisconnect(con)
 dbUnloadDriver(drv)
 
 
+period_summary <- dbGetQuery(con, 
+  "select 	period,
+	        	sum(items) as total_items,
+		        sum(nic) as total_cost
+	    from gp_data_up_to_2015
+	    group by period
+")
 
+period_summary$period = as.factor(period_summary$period)
 
+plot(x=period_summary$period, y=period_summary$total_cost)
