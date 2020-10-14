@@ -14,7 +14,7 @@ drv = dbDriver("PostgreSQL");
 #The below code specifies that it will be in a folder named prescribing_data_analysis
 source("./login_box.R");
 #This calls the function that pops up a login box, and returns your username and password
-#As a list with two items.
+#As a list with 2 items.
 login = getLogin();
 
 #Connect to the database for the course.
