@@ -20,7 +20,7 @@ login = getLogin();
 #Connect to the database for the course.
 con <- dbConnect(drv, dbname = "gp_practice_data", 
                  host = "localhost", port = 5432,
-                 user = login[1], password = login[2])
+                 user = "postgres", password = rstudioapi::askForPassword())
 
 # check all tables in the database ####
 dbListTables(con)
