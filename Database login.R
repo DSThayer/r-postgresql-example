@@ -26,6 +26,8 @@ con <- dbConnect(drv, dbname = "gp_practice_data",
 dbListTables(con)
 
 # check columns of address table
+# Using information_schema, a standard set of database information that 
+# holds information about the database contents.
 dbGetQuery(con, "
            select column_name, 
 	         ordinal_position,
@@ -39,9 +41,7 @@ dbGetQuery(con, "
 # query a dataset ####
 
 surgery <- dbGetQuery(con, "select distinct a.practiceid 
-                      from address a
-                      join gp_data_up_to_2015 b
-                      on a.practiceid = b.practiceid;")
+                      from address a")
 
 surgery
 
