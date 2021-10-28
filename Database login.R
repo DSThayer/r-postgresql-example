@@ -9,14 +9,6 @@ require("RPostgreSQL");
 #Specify what driver is needed to connect to the database.
 drv = dbDriver("PostgreSQL");
 
-#Code that pops up a login box for username and password, so it doesn't appear in your file.
-#The file login_box.R must be in the location specified below.
-#The below code specifies that it will be in a folder named prescribing_data_analysis
-source("./login_box.R");
-#This calls the function that pops up a login box, and returns your username and password
-#As a list with 2 items.
-login = getLogin();
-
 #Connect to the database for the course.
 con <- dbConnect(drv, dbname = "gp_practice_data", 
                  host = "localhost", port = 5432,
