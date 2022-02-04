@@ -13,7 +13,7 @@ drv = dbDriver("PostgreSQL");
 con <- dbConnect(drv, dbname = "gp_practice_data", 
                  host = "localhost", port = 5432,
                  user = "postgres", password = rstudioapi::askForPassword())
-
+ 
 # check all tables in the database ####
 dbListTables(con)
 
@@ -35,6 +35,12 @@ dbGetQuery(con, "
 surgery <- dbGetQuery(con, "select distinct a.practiceid 
                       from address a")
 
+unit_cost <- dbGetQuery(con, "select bnfname,items,actcost, (actcost/items) as cost_per_item from gp_data_up_to_2015 limit 100")
+
+head(unit_cost)
+
+unit_cost$cost_per_item
+
 surgery
 
 
@@ -44,7 +50,7 @@ total_rows <- dbGetQuery(con, "select count(*) from public.gp_data_up_to_2015")
 total_rows
 
 #Add a value into a string
-practice <- "W92019"
+practice <- "W97065"
 
 query <- paste(
   "select count(*) from public.gp_data_up_to_2015 where practiceid = '",
